@@ -187,7 +187,6 @@ class MainActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
         if(image.format == PixelFormat.RGBA_8888){
             var i = 0
             var hist = IntArray(256) { 0 }
-            var arr = mutableListOf<Int>()
             while( i < image.planes[0].buffer.remaining()){
 
                 val color: Int = (image.planes[0].buffer[i]+128)
@@ -195,7 +194,6 @@ class MainActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
                 if(color >= 0){
                     hist[color]++
                 }
-                arr.add(color)
                 i += 4
             }
             var s: String = ""
@@ -203,7 +201,6 @@ class MainActivity : AppCompatActivity(), ImageAnalysis.Analyzer {
                 s+=""+v+": "+hist[v]+"   "
             }
             textView.text = s
-            //Log.e("", ""+arr)
         }
 
 
